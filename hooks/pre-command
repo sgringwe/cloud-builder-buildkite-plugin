@@ -6,13 +6,14 @@ set -u
 main() {
   # service_account_file_var="$CLOUD_BUILDER_PLUGIN_SERVICE_ACCOUNT_FILE"
   # service_account_username_var="$CLOUD_BUILDER_PLUGIN_SERVICE_ACCOUNT_USERNAME"
+  commit_sha="$BUIDLKITE_COMMIT"
 
   gcloud auth activate-service-account --key-file /etc/secrets/GCR_PASSWORD
   gcloud config set account buildkite-pusher@handshake-build.iam.gserviceaccount.com
   # gcloud config set project handshake-build
   # gcloud config set compute/zone #{ENV['GCLOUD_ARTIFACT_ZONE']}
   
-  gcloud container builds submit --substitutions=COMMIT_SHA="$BUIDLKITE_COMMIT"--config cloudbuild.yaml .
+  gcloud container builds submit --substitutions=COMMIT_SHA=${!commit_sha:-}--config cloudbuild.yaml .
 
   # TODO: Poll and wait?
 }
