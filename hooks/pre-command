@@ -12,7 +12,7 @@ main() {
   # gcloud config set project handshake-build
   # gcloud config set compute/zone #{ENV['GCLOUD_ARTIFACT_ZONE']}
   
-  gcloud container builds submit --substitutions=COMMIT_SHA=$BUIDLKITE_COMMIT--config cloudbuild.yaml .
+  gcloud container builds submit --substitutions=COMMIT_SHA="$BUIDLKITE_COMMIT"--config cloudbuild.yaml .
 
   # TODO: Poll and wait?
 }
