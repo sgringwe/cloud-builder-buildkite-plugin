@@ -5,7 +5,7 @@ set -u
 
 main() {
   gcloud auth activate-service-account --key-file /etc/secrets/GCR_PASSWORD
-  # gcloud config set account #{ENV['GCLOUD_ARTIFACT_ACCOUNT']}
+  gcloud config set account buildkite-pusher@handshake-build.iam.gserviceaccount.com
   gcloud config set project handshake-build
   # gcloud config set compute/zone #{ENV['GCLOUD_ARTIFACT_ZONE']}
   gcloud container builds submit --config cloudbuild.yaml .
