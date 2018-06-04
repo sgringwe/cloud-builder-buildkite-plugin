@@ -7,13 +7,14 @@ main() {
   auth_file_var="$BUILDKITE_PLUGIN_CLOUD_BUILDER_AUTH_FILE"
   service_account_var="${BUILDKITE_PLUGIN_CLOUD_BUILDER_SERVICE_ACCOUNT}"
   project_var="${BUILDKITE_PLUGIN_CLOUD_BUILDER_PROJECT}"
+  config_file="${BUILDKITE_PLUGIN_CLOUD_BUILDER_CONFIG_FILE:-cloudbuild.yaml}"
 
   gcloud auth activate-service-account --key-file "${auth_file_var}"
   gcloud config set account "${service_account_var}"
   gcloud config set project "${project_var}"
   
   echo "+++ Submitting build to Google Cloud Builder"
-  gcloud container builds submit --config cloudbuild.yaml . --substitutions=COMMIT_SHA="${BUILDKITE_COMMIT}"
+  gcloud container builds submit --config="${config_file}" . --substitutions=COMMIT_SHA="${BUILDKITE_COMMIT}"
 }
 
 main
