@@ -9,11 +9,11 @@ Example usage:
     agents:
       queue: default
     plugins:
-      sgringwe/cloud-builder#be0dccd:
-        auth_file: /path/to/service_account_json_key
-        service_account: your_account@yourproject.iam.gserviceaccount.com
-        project: yourproject
-        config_file: cloudbuild.test.yaml # Defaults to 'cloudbuild.yaml'
+      - sgringwe/cloud-builder#be0dccd:
+          auth_file: /path/to/service_account_json_key
+          service_account: your_account@yourproject.iam.gserviceaccount.com
+          project: yourproject
+          config_file: cloudbuild.test.yaml # Defaults to 'cloudbuild.yaml'
 ```
 
 ## Requirements
